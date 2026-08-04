@@ -3,6 +3,10 @@ from django.db import models
 
 
 class User(AbstractUser):
+    """
+    Custom User model.
+    Inherits all fields from Django's AbstractUser.
+    """
 
     phone_number = models.CharField(
         max_length=15,
@@ -23,6 +27,10 @@ class User(AbstractUser):
     updated_at = models.DateTimeField(
         auto_now=True
     )
+
+    class Meta:
+        db_table = "users"
+        ordering = ["username"]
 
     def __str__(self):
         return self.username
